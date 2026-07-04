@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Touch The Star ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:radial-gradient(circle at center,#111,#050505,#000);
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Outfit,sans-serif;
+cursor:none;
+
+}
+
+/* Stars */
+
+.star{
+
+position:absolute;
+background:#FFD54F;
+border-radius:50%;
+opacity:.8;
+animation:twinkle 4s infinite ease-in-out;
+
+}
+
+@keyframes twinkle{
+
+0%,100%{
+
+opacity:.2;
+transform:scale(.8);
+
+}
+
+50%{
+
+opacity:1;
+transform:scale(1.5);
+
+}
+
+}
+
+/* Mouse Glow */
+
+.cursor{
+
+position:fixed;
+
+width:35px;
+
+height:35px;
+
+border-radius:50%;
+
+background:rgba(255,215,0,.35);
+
+filter:blur(18px);
+
+pointer-events:none;
+
+z-index:999;
+
+}
+
+/* Center */
+
+.container{
+
+position:relative;
+
+z-index:10;
+
+text-align:center;
+
+animation:appear 2s;
+
+}
+
+@keyframes appear{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* Glowing Star */
+
+#mainStar{
+
+font-size:90px;
+
+cursor:pointer;
+
+display:inline-block;
+
+animation:
+
+pulse 2.5s infinite,
+
+float 5s ease-in-out infinite;
+
+filter:
+
+drop-shadow(0 0 20px gold)
+
+drop-shadow(0 0 40px gold);
+
+transition:.6s;
+
+}
+
+#mainStar:hover{
+
+transform:scale(1.25);
+
+filter:
+
+drop-shadow(0 0 30px gold)
+
+drop-shadow(0 0 80px gold);
+
+}
+
+/* Floating */
+
+@keyframes float{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+}
+
+/* Pulse */
+
+@keyframes pulse{
+
+0%,100%{
+
+opacity:.8;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+}
+
+/* Text */
+
+h1{
+
+margin-top:35px;
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:56px;
+
+font-weight:600;
+
+letter-spacing:2px;
+
+color:white;
+
+}
+
+p{
+
+margin-top:18px;
+
+font-size:20px;
+
+color:#d8d8d8;
+
+letter-spacing:2px;
+
+}
+
+/* Explosion */
+
+.circle{
+
+position:absolute;
+
+border-radius:50%;
+
+border:2px solid gold;
+
+pointer-events:none;
+
+animation:ring 1.2s forwards;
+
+}
+
+@keyframes ring{
+
+from{
+
+width:0;
+height:0;
+opacity:1;
+
+}
+
+to{
+
+width:900px;
+height:900px;
+margin-left:-450px;
+margin-top:-450px;
+opacity:0;
+
+}
+
+}
+
+/* Golden Flash */
+
+.flash{
+
+position:fixed;
+
+inset:0;
+
+background:#FFD54F;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:1s;
+
+}
+
+/* Shooting Star */
+
+.shoot{
+
+position:absolute;
+
+width:160px;
+
+height:2px;
+
+background:linear-gradient(to right,#fff,#FFD54F,transparent);
+
+transform:rotate(-35deg);
+
+animation:shoot 8s linear infinite;
+
+opacity:.7;
+
+}
+
+@keyframes shoot{
+
+0%{
+
+left:-20%;
+top:-20%;
+
+}
+
+100%{
+
+left:120%;
+top:120%;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="flash" id="flash"></div>
+
+<div class="cursor" id="cursor"></div>
+
+<div class="container">
+
+<div id="mainStar">⭐</div>
+
+<h1>Touch the brightest star.</h1>
+
+<p>Every journey begins with a single touch.</p>
+
+</div>
+
+<div class="shoot"></div>
+
+<script>
+/* ---------- Generate Stars ---------- */
+
+for(let i=0;i<250;i++){
+
+let star=document.createElement("div");
+
+star.className="star";
+
+let size=Math.random()*3+1;
+
+star.style.width=size+"px";
+
+star.style.height=size+"px";
+
+star.style.left=Math.random()*100+"vw";
+
+star.style.top=Math.random()*100+"vh";
+
+star.style.animationDelay=Math.random()*5+"s";
+
+star.style.animationDuration=(2+Math.random()*5)+"s";
+
+document.body.appendChild(star);
+
+}
+
+/* ---------- Mouse Glow ---------- */
+
+const cursor=document.getElementById("cursor");
+
+document.addEventListener("mousemove",(e)=>{
+
+cursor.style.left=e.clientX-18+"px";
+
+cursor.style.top=e.clientY-18+"px";
+
+});
+
+/* ---------- Main Star ---------- */
+
+const mainStar=document.getElementById("mainStar");
+
+mainStar.addEventListener("mouseenter",()=>{
+
+mainStar.style.transform="scale(1.3)";
+
+});
+
+mainStar.addEventListener("mouseleave",()=>{
+
+mainStar.style.transform="scale(1)";
+
+});
+
+/* ---------- Click Animation ---------- */
+
+mainStar.onclick=function(){
+
+/* Ring */
+
+let ring=document.createElement("div");
+
+ring.className="circle";
+
+ring.style.left=window.innerWidth/2+"px";
+
+ring.style.top=window.innerHeight/2+"px";
+
+document.body.appendChild(ring);
+
+/* Star Burst */
+
+for(let i=0;i<80;i++){
+
+let p=document.createElement("div");
+
+p.style.position="fixed";
+
+p.style.left=window.innerWidth/2+"px";
+
+p.style.top=window.innerHeight/2+"px";
+
+p.style.width="4px";
+
+p.style.height="4px";
+
+p.style.borderRadius="50%";
+
+p.style.background="#FFD54F";
+
+p.style.boxShadow="0 0 12px gold";
+
+document.body.appendChild(p);
+
+let angle=Math.random()*Math.PI*2;
+
+let distance=200+Math.random()*350;
+
+let x=Math.cos(angle)*distance;
+
+let y=Math.sin(angle)*distance;
+
+p.animate([
+
+{
+
+transform:"translate(0,0) scale(1)",
+
+opacity:1
+
+},
+
+{
+
+transform:`translate(${x}px,${y}px) scale(0)`,
+
+opacity:0
+
+}
+
+],{
+
+duration:1600,
+
+easing:"ease-out"
+
+});
+
+setTimeout(()=>{
+
+p.remove();
+
+},1700);
+
+}
+
+/* Flash */
+
+const flash=document.getElementById("flash");
+
+flash.style.opacity="1";
+
+setTimeout(()=>{
+
+flash.style.opacity="0";
+
+},600);
+
+/* Zoom */
+
+mainStar.animate([
+
+{
+
+transform:"scale(1)"
+
+},
+
+{
+
+transform:"scale(5)",
+
+opacity:0
+
+}
+
+],{
+
+duration:1200,
+
+fill:"forwards"
+
+});
+
+/* Text Change */
+
+document.querySelector("h1").innerHTML="You found me ✨";
+
+document.querySelector("p").innerHTML="Let's continue our story...";
+
+/* Go to Page 3 */
+
+setTimeout(()=>{
+
+location.href="page3.html";
+
+},2200);
+
+};
+
+/* ---------- Random Shooting Stars ---------- */
+
+setInterval(()=>{
+
+let shoot=document.createElement("div");
+
+shoot.className="shoot";
+
+shoot.style.top=Math.random()*30+"vh";
+
+shoot.style.left="-20vw";
+
+shoot.style.animationDuration=(2+Math.random()*2)+"s";
+
+document.body.appendChild(shoot);
+
+setTimeout(()=>{
+
+shoot.remove();
+
+},4000);
+
+},5000);
+
+</script>
+
+</body>
+
+</html>
