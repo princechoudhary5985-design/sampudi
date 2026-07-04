@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Story</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Dancing+Script:wght@700&family=Outfit:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:radial-gradient(circle,#111,#050505,#000);
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Outfit',sans-serif;
+color:white;
+
+}
+
+/* Background Glow */
+
+body::before{
+
+content:"";
+
+position:absolute;
+
+width:700px;
+
+height:700px;
+
+background:radial-gradient(circle,#FFD54F22,transparent);
+
+filter:blur(100px);
+
+animation:rotate 25s linear infinite;
+
+}
+
+@keyframes rotate{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* Floating Dust */
+
+.dust{
+
+position:absolute;
+
+width:3px;
+
+height:3px;
+
+background:#FFD54F;
+
+border-radius:50%;
+
+animation:float linear infinite;
+
+opacity:.6;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(110vh);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-20vh);
+
+opacity:0;
+
+}
+
+}
+
+/* Falling Petals */
+
+.petal{
+
+position:absolute;
+
+font-size:22px;
+
+animation:fall linear infinite;
+
+opacity:.8;
+
+}
+
+@keyframes fall{
+
+0%{
+
+transform:translateY(-10vh) rotate(0deg);
+
+}
+
+100%{
+
+transform:translateY(110vh) rotate(360deg);
+
+}
+
+}
+
+/* Content */
+
+.container{
+
+position:relative;
+
+z-index:5;
+
+text-align:center;
+
+width:90%;
+
+max-width:900px;
+
+}
+
+.line{
+
+opacity:0;
+
+transform:translateY(30px);
+
+transition:1.5s;
+
+}
+
+.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+h1{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:65px;
+
+font-weight:600;
+
+margin-bottom:20px;
+
+}
+
+h2{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:50px;
+
+margin-top:20px;
+
+}
+
+.date{
+
+font-family:'Dancing Script',cursive;
+
+font-size:65px;
+
+color:#FFD54F;
+
+margin-top:40px;
+
+}
+
+.question{
+
+margin-top:25px;
+
+font-size:24px;
+
+letter-spacing:2px;
+
+}
+
+.arrow{
+
+font-size:45px;
+
+margin-top:60px;
+
+color:#FFD54F;
+
+cursor:pointer;
+
+animation:bounce 2s infinite;
+
+opacity:0;
+
+transition:1s;
+
+}
+
+@keyframes bounce{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(15px);
+
+}
+
+}
+
+.arrow:hover{
+
+transform:scale(1.2);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="line" id="l1">
+Every story...
+</h1>
+
+<h2 class="line" id="l2">
+has a beginning.
+</h2>
+
+<h2 class="line" id="l3">
+Ours began...
+</h2>
+
+<h2 class="line" id="l4">
+with one conversation.
+</h2>
+
+<div class="date line" id="l5">
+Your Date Here
+</div>
+
+<div class="question line" id="l6">
+Do you remember that day?
+</div>
+
+<div class="arrow" id="arrow">
+↓
+</div>
+
+</div>
+
+<script>
+/* ===========================
+   Floating Golden Dust
+=========================== */
+
+for(let i=0;i<150;i++){
+
+let dust=document.createElement("div");
+
+dust.className="dust";
+
+dust.style.left=Math.random()*100+"vw";
+
+dust.style.animationDuration=(8+Math.random()*10)+"s";
+
+dust.style.animationDelay=Math.random()*10+"s";
+
+document.body.appendChild(dust);
+
+}
+
+/* ===========================
+   Falling Sunflower Petals
+=========================== */
+
+for(let i=0;i<20;i++){
+
+let petal=document.createElement("div");
+
+petal.className="petal";
+
+petal.innerHTML="🌻";
+
+petal.style.left=Math.random()*100+"vw";
+
+petal.style.animationDuration=(12+Math.random()*8)+"s";
+
+petal.style.animationDelay=Math.random()*6+"s";
+
+document.body.appendChild(petal);
+
+}
+
+/* ===========================
+   Cinematic Text Animation
+=========================== */
+
+setTimeout(()=>{
+document.getElementById("l1").classList.add("show");
+},1000);
+
+setTimeout(()=>{
+document.getElementById("l2").classList.add("show");
+},3500);
+
+setTimeout(()=>{
+document.getElementById("l1").style.opacity="0";
+document.getElementById("l2").style.opacity="0";
+},6500);
+
+setTimeout(()=>{
+document.getElementById("l3").classList.add("show");
+},7600);
+
+setTimeout(()=>{
+document.getElementById("l4").classList.add("show");
+},9800);
+
+setTimeout(()=>{
+document.getElementById("l5").classList.add("show");
+},12200);
+
+setTimeout(()=>{
+document.getElementById("l6").classList.add("show");
+},14200);
+
+setTimeout(()=>{
+document.getElementById("arrow").style.opacity="1";
+},16500);
+
+/* ===========================
+   Arrow Click
+=========================== */
+
+document.getElementById("arrow").onclick=function(){
+
+document.body.style.transition="2s";
+
+document.body.style.opacity="0";
+
+setTimeout(()=>{
+
+window.location="page4.html";
+
+},1800);
+
+};
+
+/* ===========================
+   Press Space to Continue
+=========================== */
+
+document.addEventListener("keydown",function(e){
+
+if(e.code==="Space"){
+
+document.getElementById("arrow").click();
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
