@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Favorite Person ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:#000;
+overflow:auto;
+height:100vh;
+
+}
+
+/* Background Glow */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:700px;
+
+height:700px;
+
+left:50%;
+
+top:50%;
+
+transform:translate(-50%,-50%);
+
+background:radial-gradient(circle,#ffffff10,transparent 70%);
+
+filter:blur(80px);
+
+z-index:-1;
+
+}
+
+/* Falling Images */
+
+.gallery{
+
+position:relative;
+
+width:100%;
+
+height:100vh;
+
+overflow:hidden;
+
+}
+
+.photo{
+
+position:absolute;
+
+width:180px;
+
+height:240px;
+
+border-radius:20px;
+
+overflow:hidden;
+
+cursor:pointer;
+
+background:#111;
+
+border:2px solid rgba(255,255,255,.15);
+
+box-shadow:0 15px 40px rgba(0,0,0,.5);
+
+transition:.4s;
+
+animation:fall linear infinite;
+
+}
+
+.photo:hover{
+
+transform:scale(1.05);
+
+border-color:#fff;
+
+box-shadow:0 0 30px rgba(255,255,255,.4);
+
+}
+
+.photo img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+@keyframes fall{
+
+0%{
+
+transform:translateY(-300px);
+
+}
+
+100%{
+
+transform:translateY(120vh);
+
+}
+
+}
+
+/* Full Screen Viewer */
+
+.viewer{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.95);
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:999;
+
+}
+
+.viewer img{
+
+max-width:90%;
+
+max-height:90%;
+
+border-radius:20px;
+
+box-shadow:0 0 40px rgba(255,255,255,.3);
+
+}
+
+.close{
+
+position:absolute;
+
+top:25px;
+
+right:35px;
+
+font-size:45px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+/* Bottom Button */
+
+.bottom{
+
+position:fixed;
+
+bottom:30px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+z-index:1000;
+
+}
+
+.bottom button{
+
+padding:15px 45px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:50px;
+
+background:white;
+
+color:black;
+
+cursor:pointer;
+
+font-weight:600;
+
+transition:.35s;
+
+}
+
+.bottom button:hover{
+
+background:black;
+
+color:white;
+
+border:2px solid white;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="gallery">
+    <!-- Floating Videos -->
+
+    <div class="photo" style="left:4%; animation-duration:18s; animation-delay:0s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit1.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="photo" style="left:14%; animation-duration:22s; animation-delay:2s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit2.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="photo" style="left:26%; animation-duration:20s; animation-delay:5s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit3.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="photo" style="left:38%; animation-duration:24s; animation-delay:1s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit4.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="photo" style="left:50%; animation-duration:19s; animation-delay:6s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit5.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="photo" style="left:62%; animation-duration:23s; animation-delay:3s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit6.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="photo" style="left:74%; animation-duration:21s; animation-delay:4s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit7.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="photo" style="left:84%; animation-duration:18s; animation-delay:7s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit8.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="photo" style="left:20%; animation-duration:26s; animation-delay:8s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit9.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="photo" style="left:68%; animation-duration:25s; animation-delay:10s;">
+        <video muted autoplay loop playsinline>
+            <source src="edit10.mp4" type="video/mp4">
+        </video>
+    </div>
+
+</div>
+
+<!-- Fullscreen Video Viewer -->
+
+<div class="viewer" id="viewer">
+
+    <span class="close" id="close">&times;</span>
+
+    <video id="viewerVideo" controls playsinline style="max-width:90%; max-height:90%; border-radius:20px;">
+        <source src="" type="video/mp4">
+    </video>
+
+</div>
+
+<!-- Bottom Button -->
+
+<div class="bottom">
+    <button onclick="window.location.href='page4.html'">
+        See More ❤️
+    </button>
+</div>
+<script>
+
+// Get elements
+const viewer = document.getElementById("viewer");
+const viewerVideo = document.getElementById("viewerVideo");
+const closeBtn = document.getElementById("close");
+
+// Open fullscreen video
+document.querySelectorAll(".photo video").forEach(video => {
+
+    video.addEventListener("click", function(e){
+
+        e.stopPropagation();
+
+        const src = this.querySelector("source").src;
+
+        viewer.style.display = "flex";
+
+        viewerVideo.src = src;
+
+        viewerVideo.currentTime = 0;
+
+        viewerVideo.muted = false;
+
+        viewerVideo.play();
+
+    });
+
+});
+
+// Close button
+closeBtn.onclick = function(){
+
+    viewerVideo.pause();
+
+    viewerVideo.src = "";
+
+    viewer.style.display = "none";
+
+};
+
+// Close when clicking outside the video
+viewer.onclick = function(e){
+
+    if(e.target === viewer){
+
+        viewerVideo.pause();
+
+        viewerVideo.src = "";
+
+        viewer.style.display = "none";
+
+    }
+
+};
+
+// ESC key support
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Escape"){
+
+        viewerVideo.pause();
+
+        viewerVideo.src="";
+
+        viewer.style.display="none";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
