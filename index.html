@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Sam</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;
+font-family:Poppins,sans-serif;
+background:radial-gradient(circle at top,#2b250d,#090909 45%,#000 100%);
+color:#fff;transition:opacity .8s}
+#bg,#petals{position:fixed;inset:0;overflow:hidden}
+.dot{position:absolute;width:2px;height:2px;background:#ffd54f;border-radius:50%;
+animation:rise linear infinite}
+@keyframes rise{from{transform:translateY(110vh);opacity:0}20%{opacity:1}to{transform:translateY(-10vh);opacity:0}}
+.petal{position:absolute;color:#ffcf40;font-size:20px;animation:fall linear infinite}
+@keyframes fall{from{transform:translateY(-10vh) rotate(0)}to{transform:translateY(110vh) rotate(360deg)}}
+.cursor{position:fixed;width:18px;height:18px;border-radius:50%;pointer-events:none;
+background:#ffd54f66;filter:blur(8px)}
+.card{position:relative;z-index:2;text-align:center;padding:50px;border:1px solid rgba(255,215,0,.15);
+background:rgba(255,255,255,.03);backdrop-filter:blur(12px);border-radius:30px;
+box-shadow:0 0 50px rgba(255,215,0,.08)}
+.sun{width:260px;filter:drop-shadow(0 0 30px rgba(255,210,0,.6));
+animation:sway 6s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) scale(1.02)}}
+h1{font-family:Cinzel,serif;font-size:52px;letter-spacing:4px;margin:20px 0 10px}
+p{color:#ddd;letter-spacing:2px}
+button{margin-top:35px;padding:16px 48px;border-radius:50px;border:1px solid #d8b541;
+background:rgba(255,255,255,.05);color:#f7d45d;font-size:18px;cursor:pointer;
+transition:.35s}
+button:hover{transform:translateY(-4px);box-shadow:0 0 25px #d8b541;background:rgba(255,215,0,.12)}
+</style>
+</head>
+<body>
+<div id="bg"></div><div id="petals"></div><div class="cursor" id="c"></div>
+<div class="card">
+<img class="sun" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/512px-Sunflower_sky_backdrop.jpg" onerror="this.style.display='none'">
+<h1>For Sam</h1>
+<p>One last surprise.</p>
+<button onclick="go()">Begin Our Story</button>
+</div>
+<script>
+for(let i=0;i<120;i++){let d=document.createElement('div');d.className='dot';
+d.style.left=Math.random()*100+'vw';d.style.animationDuration=5+Math.random()*8+'s';
+d.style.animationDelay=Math.random()*6+'s';bg.appendChild(d);}
+for(let i=0;i<25;i++){let p=document.createElement('div');p.className='petal';
+p.textContent='✿';p.style.left=Math.random()*100+'vw';
+p.style.animationDuration=8+Math.random()*8+'s';p.style.animationDelay=Math.random()*6+'s';
+petals.appendChild(p);}
+document.onmousemove=e=>{c.style.left=e.clientX-9+'px';c.style.top=e.clientY-9+'px';}
+function go(){document.body.style.opacity=0;setTimeout(()=>location='page2.html',800);}
+</script>
+</body>
+</html>
